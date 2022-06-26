@@ -136,6 +136,15 @@ if(isset($_SESSION['id-user'])){
     $jk=$row['jk'];
     $ttl=$row['ttl'];
     $tgl_masuk=$row['tgl_masuk'];
+    $tahun_masuk=date_create($tgl_masuk);
+    $tahun_masuk=date_format($tahun_masuk, "Y");
+    $tahun_sekarang=date("Y");
+    $tahun_lulus=$tahun_sekarang-$tahun_masuk;
+    if($tahun_lulus<3){
+      $_SESSION['message-danger']="Maaf, sepertinya anda memasukan data yang salah.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
     $tgl_lulus=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_lulus']))));
     $ipk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ipk']))));
     $predikat=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['predikat']))));
@@ -143,6 +152,7 @@ if(isset($_SESSION['id-user'])){
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
     $lama_studi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['lama_studi']))));
     mysqli_query($conn, "INSERT INTO mahasiswa_wisuda(id_prodi,noreg,nama,jk,ttl,tgl_masuk,tgl_lulus,ipk,predikat_lulus,tahun_wisuda,wisuda_ke,lama_studi) VALUES('$id_prodi','$noreg','$nama','$jk','$ttl','$tgl_masuk','$tgl_lulus','$ipk','$predikat','$tahun_wisuda','$wisuda_ke','$lama_studi')");
+    mysqli_query($conn, "DELETE FROM mahasiswa_baru WHERE noreg='$noreg'");
     return mysqli_affected_rows($conn);
   }
   function mahasiswa_wisuda_ubah($data){global $conn;
