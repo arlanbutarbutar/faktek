@@ -56,21 +56,21 @@ if(isset($_SESSION['id-user'])){
     if($id_prodi==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih program studi.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $noreg=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['noreg']))));
     $checkNoreg=mysqli_query($conn, "SELECT * FROM mahasiswa_baru WHERE noreg='$noreg'");
     if(mysqli_num_rows($checkNoreg)>0){
       $_SESSION['message-danger']="Maaf, nomor regis mahasiswa yang anda masukkan sudah ada.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $nama=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nama']))));
     $jk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['jk']))));
     if($jk==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih jenis kelamin.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $tempat_lahir=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tempat-lahir']))));
     $tgl_lahir=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl-lahir']))));
@@ -78,6 +78,8 @@ if(isset($_SESSION['id-user'])){
     $tgl_lahir=date_format($tgl_lahir, "d M Y");
     $ttl=$tempat_lahir." ".$tgl_lahir;
     $tgl_masuk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_masuk']))));
+    $tgl_masuk=date_create($tgl_masuk);
+    $tgl_masuk=date_format($tgl_masuk, "d M Y");
     $asal_sekolah=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['asal-sekolah']))));
     $nilai_tes=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nilai-tes']))));
     mysqli_query($conn, "INSERT INTO mahasiswa_baru(id_prodi,noreg,nama,jk,ttl,tgl_masuk,asal_sklh,nilai_tes) VALUES('$id_prodi','$noreg','$nama','$jk','$ttl','$tgl_masuk','$asal_sekolah','$nilai_tes')");
@@ -89,7 +91,7 @@ if(isset($_SESSION['id-user'])){
     if($id_prodi==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih program studi.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $noreg=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['noreg']))));
     $oldNoreg=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['oldNoreg']))));
@@ -98,7 +100,7 @@ if(isset($_SESSION['id-user'])){
       if(mysqli_num_rows($checkNoreg)>0){
         $_SESSION['message-danger']="Maaf, nomor regis mahasiswa yang anda masukkan sudah ada.";
         $_SESSION['time-message']=time();
-        header("Location: ".$_SESSION['page-to']); return false;
+        return false;
       }
     }
     $nama=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nama']))));
@@ -106,10 +108,12 @@ if(isset($_SESSION['id-user'])){
     if($jk==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih jenis kelamin.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $ttl=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ttl']))));
     $tgl_masuk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_masuk']))));
+    $tgl_masuk=date_create($tgl_masuk);
+    $tgl_masuk=date_format($tgl_masuk, "d M Y");
     $asal_sekolah=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['asal-sekolah']))));
     $nilai_tes=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nilai-tes']))));
     mysqli_query($conn, "UPDATE mahasiswa_baru SET id_prodi='$id_prodi', noreg='$noreg', nama='$nama', jk='$jk', ttl='$ttl', tgl_masuk='$tgl_masuk', asal_sklh='$asal_sekolah', nilai_tes='$nilai_tes' WHERE id_mhs='$id_mhs'");
@@ -126,7 +130,7 @@ if(isset($_SESSION['id-user'])){
     if(mysqli_num_rows($checkNoreg)>0){
       $_SESSION['message-danger']="Maaf, mahasiswa yang anda masukkan sudah ada.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $selectMhs=mysqli_query($conn, "SELECT * FROM mahasiswa_baru WHERE noreg='$noreg'");
     $row=mysqli_fetch_assoc($selectMhs);
@@ -140,17 +144,31 @@ if(isset($_SESSION['id-user'])){
     $tahun_masuk=date_format($tahun_masuk, "Y");
     $tahun_sekarang=date("Y");
     $tahun_lulus=$tahun_sekarang-$tahun_masuk;
-    if($tahun_lulus<3){
+    if($tahun_lulus<=3){
       $_SESSION['message-danger']="Maaf, sepertinya anda memasukan data yang salah.";
       $_SESSION['time-message']=time();
       return false;
     }
     $tgl_lulus=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_lulus']))));
+    $tgl_lulus=date_create($tgl_lulus);
+    $tgl_lulus=date_format($tgl_lulus, "d M Y");
     $ipk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ipk']))));
     $predikat=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['predikat']))));
     $tahun_wisuda=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun_wisuda']))));
+    $tahun_wisuda=date_create($tahun_wisuda);
+    $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
     $lama_studi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['lama_studi']))));
+    if($lama_studi!=$tahun_lulus){
+      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan tidak sesuai.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
+    if($lama_studi<=3){
+      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan belum benar.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
     mysqli_query($conn, "INSERT INTO mahasiswa_wisuda(id_prodi,noreg,nama,jk,ttl,tgl_masuk,tgl_lulus,ipk,predikat_lulus,tahun_wisuda,wisuda_ke,lama_studi) VALUES('$id_prodi','$noreg','$nama','$jk','$ttl','$tgl_masuk','$tgl_lulus','$ipk','$predikat','$tahun_wisuda','$wisuda_ke','$lama_studi')");
     mysqli_query($conn, "DELETE FROM mahasiswa_baru WHERE noreg='$noreg'");
     return mysqli_affected_rows($conn);
@@ -161,7 +179,7 @@ if(isset($_SESSION['id-user'])){
     if($id_prodi==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih program studi.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $noreg=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['noreg']))));
     $oldNoreg=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['oldNoreg']))));
@@ -170,7 +188,7 @@ if(isset($_SESSION['id-user'])){
       if(mysqli_num_rows($checkNoreg)>0){
         $_SESSION['message-danger']="Maaf, nomor regis mahasiswa yang anda masukkan sudah ada.";
         $_SESSION['time-message']=time();
-        header("Location: ".$_SESSION['page-to']); return false;
+        return false;
       }
     }
     $nama=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nama']))));
@@ -178,16 +196,41 @@ if(isset($_SESSION['id-user'])){
     if($jk==""){
       $_SESSION['message-danger']="Maaf, anda belum memilih jenis kelamin.";
       $_SESSION['time-message']=time();
-      header("Location: ".$_SESSION['page-to']); return false;
+      return false;
     }
     $ttl=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ttl']))));
     $tgl_masuk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_masuk']))));
+    $tgl_masuk=date_create($tgl_masuk);
+    $tgl_masuk=date_format($tgl_masuk, "d M Y");
+    $tahun_masuk=date_create($tgl_masuk);
+    $tahun_masuk=date_format($tahun_masuk, "Y");
+    $tahun_sekarang=date("Y");
+    $tahun_lulus=$tahun_sekarang-$tahun_masuk;
+    if($tahun_lulus<=3){
+      $_SESSION['message-danger']="Maaf, sepertinya anda memasukan data yang salah.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
     $tgl_lulus=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tgl_lulus']))));
+    $tgl_lulus=date_create($tgl_lulus);
+    $tgl_lulus=date_format($tgl_lulus, "d M Y");
     $ipk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ipk']))));
     $predikat=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['predikat']))));
     $tahun_wisuda=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun_wisuda']))));
+    $tahun_wisuda=date_create($tahun_wisuda);
+    $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
     $lama_studi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['lama_studi']))));
+    if($lama_studi!=$tahun_lulus){
+      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan tidak sesuai.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
+    if($lama_studi<=3){
+      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan belum benar.";
+      $_SESSION['time-message']=time();
+      return false;
+    }
     mysqli_query($conn, "UPDATE mahasiswa_wisuda SET id_prodi='$id_prodi', noreg='$noreg', nama='$nama', jk='$jk', ttl='$ttl', tgl_masuk='$tgl_masuk', tgl_lulus='$tgl_lulus', ipk='$ipk', predikat_lulus='$predikat', tahun_wisuda='$tahun_wisuda', wisuda_ke='$wisuda_ke', lama_studi='$lama_studi' WHERE id_mhs='$id_mhs'");
     return mysqli_affected_rows($conn);
   }

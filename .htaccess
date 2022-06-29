@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+</IfModule>
+ErrorDocument 404 http://127.0.0.1:1010/apps/faktek/404
+IndexIgnore *.gif *.zip *.txt *.png *.php *.mp4
+#RewriteCond %{HTTP_HOST} ^console.netmedia-framecode.com [NC]
+#RewriteRule ^(.*)$ https://www.console.netmedia-framecode.com/$1 [L,R=301]
+# Redirect 301 https://www.netmedia-framecode.com/index https://www.netmedia-framecode.com/404
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php70” package as the default “PHP” programming language.
+#<IfModule mime_module>
+#  AddHandler application/x-httpd-ea-php70___lsphp .php .php7 .phtml
+#</IfModule>
+# php -- END cPanel-generated handler, do not edit

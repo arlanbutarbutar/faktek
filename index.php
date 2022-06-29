@@ -29,7 +29,7 @@
               <div class="col-md-3 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <a href="index.php?chart=1" style="text-decoration: none;">
+                    <a href="?chart=1" style="text-decoration: none;">
                       <p class="card-title text-md-center text-xl-left">Teknik Arsitektur</p>
                       <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                         <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><?= $countProdiArsitek?></h3>
@@ -42,7 +42,7 @@
               <div class="col-md-3 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <a href="index.php?chart=2" style="text-decoration: none;">
+                    <a href="?chart=2" style="text-decoration: none;">
                       <p class="card-title text-md-center text-xl-left">Teknik Sipil</p>
                       <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                         <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><?= $countProdiSipil?></h3>
@@ -55,7 +55,7 @@
               <div class="col-md-3 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <a href="index.php?chart=3" style="text-decoration: none;">
+                    <a href="?chart=3" style="text-decoration: none;">
                       <p class="card-title text-md-center text-xl-left">Teknik Ilmu Komputer</p>
                       <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                         <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><?= $countProdiIlkom?></h3>

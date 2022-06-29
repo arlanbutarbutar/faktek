@@ -1,8 +1,8 @@
 <?php require_once("controller/script.php");
-  if(!isset($_GET['id-pegawai'])){header("Location: pegawai.php");}
+  if(!isset($_GET['id-pegawai'])){header("Location: pegawai");}
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Edit Pegawai"; $_SESSION['page-to']="edit-pegawai.php?id-pegawai=".$_GET['id-pegawai']; $_SESSION['search']=2;
+  $_SESSION['page-name']="Edit Pegawai"; $_SESSION['page-to']="edit-pegawai?id-pegawai=".$_GET['id-pegawai']; $_SESSION['search']=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +75,7 @@
                       <input type="hidden" name="id-pegawai" value="<?= $row['id_pegawai']?>">
                       <input type="hidden" name="oldNip" value="<?= $row['nip']?>">
                       <button type="submit" name="ubah-pegawai" class="btn btn-primary me-2">Ubah</button>
-                      <button type="button" onclick="window.location.href='pegawai.php'" class="btn btn-light">Kembali</button>
+                      <button type="button" onclick="window.location.href='pegawai'" class="btn btn-light">Kembali</button>
                     </form>
                   <?php }}?>
                   </div>

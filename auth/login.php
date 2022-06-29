@@ -1,6 +1,6 @@
 <?php require_once("../controller/script.php");
   require_once("../controller/redirect-users.php");
-  $_SESSION['auth']=1; $_SESSION['page-name']="Register"; $_SESSION['page-to']="register.php";
+  $_SESSION['auth']=1; $_SESSION['page-name']="Register"; $_SESSION['page-to']="register";
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -40,7 +40,7 @@
                       </div>
                     </form>
                     <div class="new-account mt-3">
-                      <p class="text-center">Belum punya akun? <a href="register.php" class="text-primary">Daftar</a></p>
+                      <p class="text-center">Belum punya akun? <a href="register" class="text-primary">Daftar</a></p>
                     </div>
                   </div>
                 </div>

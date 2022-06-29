@@ -1,7 +1,7 @@
 <?php require_once("controller/script.php");
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Mahasiswa Wisuda"; $_SESSION['page-to']="mahasiswa-wisuda.php"; $_SESSION['search']=1;
+  $_SESSION['page-name']="Mahasiswa Wisuda"; $_SESSION['page-to']="mahasiswa-wisuda"; $_SESSION['search']=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +31,12 @@
                     <h4 class="font-weight-bold mb-0"><?= $_SESSION['page-name']?></h4>
                   </div>
                   <div>
-                    <button type="submit" onclick="window.location.href='tambah-mahasiswa-wisuda.php'" class="btn btn-primary btn-icon-text btn-rounded">
+                    <button type="submit" onclick="window.location.href='tambah-mahasiswa-wisuda'" class="btn btn-primary btn-icon-text btn-rounded">
                       Tambah
                     </button>
-                    <a href="export-pdf-wisuda.php" class="btn btn-danger btn-icon-text btn-rounded" target="_blank">Export PDF</a>
-                    <a href="export-excel-wisuda.php" class="btn btn-success btn-icon-text btn-rounded" target="_blank">Export Excel</a>
-                    <a href="import-excel.php" class="btn btn-success btn-icon-text btn-rounded">Import Excel</a>
+                    <a href="export-pdf?page-to=<?= $_SESSION['page-to']?>" class="btn btn-danger btn-icon-text btn-rounded">Export PDF</a>
+                    <a href="export-excel?page-to=<?= $_SESSION['page-to']?>" class="btn btn-success btn-icon-text btn-rounded">Export Excel</a>
+                    <a href="import-excel" class="btn btn-success btn-icon-text btn-rounded">Import Excel</a>
                   </div>
                 </div>
               </div>
@@ -78,15 +78,15 @@
                               <td><?= $row['nama']?></td>
                               <td><?= $row['jk']?></td>
                               <td><?= $row['ttl']?></td>
-                              <td><?php $tgl_masuk=date_create($row['tgl_masuk']); $tgl_masuk=date_format($tgl_masuk, "d M Y"); echo $tgl_masuk;?></td>
-                              <td><?php $tgl_lulus=date_create($row['tgl_lulus']); $tgl_lulus=date_format($tgl_lulus, "d M Y"); echo $tgl_lulus;?></td>
+                              <td><?= $row['tgl_masuk']?></td>
+                              <td><?= $row['tgl_lulus']?></td>
                               <td><?= $row['ipk']?></td>
                               <td><?= $row['predikat_lulus']?></td>
-                              <td><?php $tahun_wisuda=date_create($row['tahun_wisuda']); $tahun_wisuda=date_format($tahun_wisuda, "Y"); echo $tahun_wisuda;?></td>
+                              <td><?= $row['tahun_wisuda']?></td>
                               <td><?= $row['wisuda_ke']?></td>
                               <td><?= $row['lama_studi']?></td>
                               <td>
-                                <a href="edit-mahasiswa-wisuda.php?id-mhs-wisuda=<?= $row['id_mhs']?>" class="btn btn-warning btn-sm">Ubah</a>
+                                <a href="edit-mahasiswa-wisuda?id-mhs-wisuda=<?= $row['id_mhs']?>" class="btn btn-warning btn-sm">Ubah</a>
                               </td>
                               <td>
                                 <form action="" method="POST">

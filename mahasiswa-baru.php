@@ -1,7 +1,7 @@
 <?php require_once("controller/script.php");
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Mahasiswa Baru"; $_SESSION['page-to']="mahasiswa-baru.php"; $_SESSION['search']=1;
+  $_SESSION['page-name']="Mahasiswa Baru"; $_SESSION['page-to']="mahasiswa-baru"; $_SESSION['search']=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +31,11 @@
                     <h4 class="font-weight-bold mb-0"><?= $_SESSION['page-name']?></h4>
                   </div>
                   <div>
-                    <button type="submit" onclick="window.location.href='tambah-mahasiswa-baru.php'" class="btn btn-primary btn-icon-text btn-rounded">
+                    <button type="submit" onclick="window.location.href='tambah-mahasiswa-baru'" class="btn btn-primary btn-icon-text btn-rounded">
                       Tambah
                     </button>
-                    <a href="export-pdf-baru.php" class="btn btn-danger btn-icon-text btn-rounded" target="_blank">Export PDF</a>
-                    <a href="export-excel-baru.php" class="btn btn-success btn-icon-text btn-rounded" target="_blank">Export Excel</a>
+                    <a href="export-pdf?page-to=<?= $_SESSION['page-to']?>" class="btn btn-danger btn-icon-text btn-rounded">Export PDF</a>
+                    <a href="export-excel?page-to=<?= $_SESSION['page-to']?>" class="btn btn-success btn-icon-text btn-rounded">Export Excel</a>
                   </div>
                 </div>
               </div>
@@ -73,11 +73,11 @@
                               <td><?= $row['prodi']?></td>
                               <td><?= $row['jk']?></td>
                               <td><?= $row['ttl']?></td>
-                              <td><?php $tgl_masuk=date_create($row['tgl_masuk']); $tgl_masuk=date_format($tgl_masuk, "d M Y"); echo $tgl_masuk;?></td>
+                              <td><?= $row['tgl_masuk']?></td>
                               <td><?= $row['asal_sklh']?></td>
                               <td><?= $row['nilai_tes']?></td>
                               <td>
-                                <a href="edit-mahasiswa-baru.php?id-mhs-baru=<?= $row['id_mhs']?>" class="btn btn-warning btn-sm">Ubah</a>
+                                <a href="edit-mahasiswa-baru?id-mhs-baru=<?= $row['id_mhs']?>" class="btn btn-warning btn-sm">Ubah</a>
                               </td>
                               <td>
                                 <form action="" method="POST">

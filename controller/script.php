@@ -15,7 +15,7 @@ if(!isset($_SESSION["id-user"])){
     if(registration($_POST)>0){
       $_SESSION['message-success']="Akun anda berhasil dibuat, silakan menunggu beberapa saat sampai akun anda diaktifkan oleh admin.";
       $_SESSION['time-message']=time();
-      header("Location: login.php"); exit;
+      header("Location: login"); exit;
     }else{
       $_SESSION['message-warning']="Maaf, sepertinya ada kesalahan saat menyambungkan ke database.";
       $_SESSION['time-message']=time();
@@ -55,7 +55,7 @@ if(isset($_SESSION['id-user'])){
     if(mahasiswa_baru_ubah($_POST)>0){
       $_SESSION['message-success']="Data mahasiswa baru berhasil diubah.";
       $_SESSION['time-message']=time();
-      header("Location: mahasiswa-baru.php"); exit();
+      header("Location: mahasiswa-baru"); exit();
     }else{
       $_SESSION['message-warning']="Maaf, sepertinya ada kesalahan saat menyambungkan ke database.";
       $_SESSION['time-message']=time();
@@ -94,7 +94,7 @@ if(isset($_SESSION['id-user'])){
     if(mahasiswa_wisuda_ubah($_POST)>0){
       $_SESSION['message-success']="Data mahasiswa wisuda berhasil diubah.";
       $_SESSION['time-message']=time();
-      header("Location: mahasiswa-wisuda.php"); exit();
+      header("Location: mahasiswa-wisuda"); exit();
     }else{
       $_SESSION['message-warning']="Maaf, sepertinya ada kesalahan saat menyambungkan ke database.";
       $_SESSION['time-message']=time();
@@ -143,7 +143,7 @@ if(isset($_SESSION['id-user'])){
     if(pegawai_ubah($_POST)>0){
       $_SESSION['message-success']="Data pegawai berhasil diubah.";
       $_SESSION['time-message']=time();
-      header("Location: pegawai.php"); exit();
+      header("Location: pegawai"); exit();
     }else{
       $_SESSION['message-warning']="Maaf, sepertinya ada kesalahan saat menyambungkan ke database.";
       $_SESSION['time-message']=time();
@@ -172,7 +172,7 @@ if(isset($_SESSION['id-user'])){
     if(users_ubah($_POST)>0){
       $_SESSION['message-success']="Data user berhasil diubah.";
       $_SESSION['time-message']=time();
-      header("Location: users.php"); exit();
+      header("Location: users"); exit();
     }else{
       $_SESSION['message-warning']="Maaf, sepertinya ada kesalahan saat menyambungkan ke database.";
       $_SESSION['time-message']=time();
@@ -196,6 +196,12 @@ if(isset($_SESSION['id-user'])){
   $countProdiArsitek=mysqli_num_rows($viewProdiArsitek);
   $viewProdiIlkom=mysqli_query($conn, "SELECT * FROM mahasiswa_wisuda WHERE id_prodi='13'");
   $countProdiIlkom=mysqli_num_rows($viewProdiIlkom);
+  $viewProdiSipil_baru=mysqli_query($conn, "SELECT * FROM mahasiswa_baru WHERE id_prodi='11'");
+  $countProdiSipil_baru=mysqli_num_rows($viewProdiSipil_baru);
+  $viewProdiArsitek_baru=mysqli_query($conn, "SELECT * FROM mahasiswa_baru WHERE id_prodi='12'");
+  $countProdiArsitek_baru=mysqli_num_rows($viewProdiArsitek_baru);
+  $viewProdiIlkom_baru=mysqli_query($conn, "SELECT * FROM mahasiswa_baru WHERE id_prodi='13'");
+  $countProdiIlkom_baru=mysqli_num_rows($viewProdiIlkom_baru);
   $wisudaMahasiswaSipil=mysqli_query($conn, "SELECT * FROM data_wisuda JOIN mahasiswa_wisuda ON data_wisuda.noreg=mahasiswa_wisuda.noreg JOIN prodi ON data_wisuda.id_prodi=prodi.id_prodi WHERE data_wisuda.id_prodi='11'");
   $wisudaMahasiswaArsitek=mysqli_query($conn, "SELECT * FROM data_wisuda JOIN mahasiswa_wisuda ON data_wisuda.noreg=mahasiswa_wisuda.noreg JOIN prodi ON data_wisuda.id_prodi=prodi.id_prodi WHERE data_wisuda.id_prodi='12'");
   $wisudaMahasiswaIlkom=mysqli_query($conn, "SELECT * FROM data_wisuda JOIN mahasiswa_wisuda ON data_wisuda.noreg=mahasiswa_wisuda.noreg JOIN prodi ON data_wisuda.id_prodi=prodi.id_prodi WHERE data_wisuda.id_prodi='13'");

@@ -59,8 +59,8 @@
                         <label>Jenis Kelamin</label>
                         <select name="jk" class="form-control" required>
                           <option>Pilih Jenis Kelamin</option>
-                          <option value="Laki-Laki">Laki-Laki</option>
-                          <option value="Perempuan">Perempuan</option>
+                          <option value="L">Laki-Laki</option>
+                          <option value="P">Perempuan</option>
                         </select>
                       </div>
                       <div class="form-group">

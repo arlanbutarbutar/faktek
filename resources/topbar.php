@@ -28,7 +28,7 @@
           <img src="assets/img/user.png" alt="profile"/>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="controller/logout.php">
+          <a class="dropdown-item" href="controller/logout">
             <i class="ti-power-off text-primary"></i>
             Logout
           </a>

@@ -2,10 +2,17 @@
 require_once("controller/script.php");
 require_once __DIR__ . '/vendor/autoload.php';
 
+$prodi="";
+if(isset($_GET['prodi'])){
+  $prodi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET['prodi']))));
+  $prodi=str_replace("-", " ", $prodi);
+  $newMahasiswa=mysqli_query($conn, "SELECT * FROM mahasiswa_baru JOIN prodi ON mahasiswa_baru.id_prodi=prodi.id_prodi WHERE prodi.prodi='$prodi' ORDER BY mahasiswa_baru.id_mhs DESC");
+}
+
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML('<img src="assets/img/cop.png">');
-$mpdf->WriteHTML('<h2 style="text-align: center;">Data Mahasiswa Baru</h2>');
-$mpdf->WriteHTML('<table class="table table-striped" style="text-align: center;">
+$mpdf->WriteHTML('<h2 style="text-align: center;">Data Mahasiswa Baru <br>Program Studi '.$prodi.'</h2>');
+$mpdf->WriteHTML('<table class="table table-striped" style="text-align: center;margin: auto;">
   <thead>
     <tr>
       <th scope="col">No</th>

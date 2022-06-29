@@ -1,8 +1,8 @@
 <?php require_once("controller/script.php");
-  if(!isset($_GET['id-mhs-wisuda'])){header("Location: mahasiswa-wisuda.php");}
+  if(!isset($_GET['id-mhs-wisuda'])){header("Location: mahasiswa-wisuda");}
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Edit Mahasiswa Wisuda"; $_SESSION['page-to']="edit-mahasiswa-wisuda.php?id-mhs-wisuda=".$_GET['id-mhs-wisuda']; $_SESSION['search']=2;
+  $_SESSION['page-name']="Edit Mahasiswa Wisuda"; $_SESSION['page-to']="edit-mahasiswa-wisuda?id-mhs-wisuda=".$_GET['id-mhs-wisuda']; $_SESSION['search']=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +43,13 @@
                       <div class="form-group">
                         <label>Program Studi</label>
                         <select name="id-prodi" class="form-control" required>
-                          <option value="">Pilih Prodi</option>
+                          <?php 
+                            $id_prodi=$row['id_prodi'];
+                            $selectProdi=mysqli_query($conn, "SELECT * FROM prodi WHERE id_prodi!='$id_prodi'");
+                            $selectProdi_view=mysqli_query($conn, "SELECT * FROM prodi WHERE id_prodi='$id_prodi'");
+                            $row_pv=mysqli_fetch_assoc($selectProdi_view);
+                          ?>
+                          <option value="<?= $row_pv['id_prodi']?>"><?= $row_pv['prodi']?></option>
                           <?php foreach($selectProdi as $row_prodi):?>
                           <option value="<?= $row_prodi['id_prodi']?>"><?= $row_prodi['prodi']?></option>
                           <?php endforeach;?>
@@ -60,9 +66,8 @@
                       <div class="form-group">
                         <label>Jenis Kelamin</label>
                         <select name="jk" class="form-control" required>
-                          <option value="">Pilih Jenis Kelamin</option>
-                          <option value="Laki-Laki">Laki-Laki</option>
-                          <option value="Perempuan">Perempuan</option>
+                          <option value="<?= $row['jk']?>"><?php if($row['jk']=="L"){echo "Laki-Laki";}else if($row['jk']=="P"){echo "Perempuan";}?></option>
+                          <option value="<?php if($row['jk']=="L"){echo "P";}else if($row['jk']=="P"){echo "L";}?>"><?php if($row['jk']=="L"){echo "Perempuan";}else if($row['jk']=="P"){echo "Laki-Laki";}?></option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -100,7 +105,7 @@
                       <input type="hidden" name="id-mhs" value="<?= $row['id_mhs']?>">
                       <input type="hidden" name="oldNoreg" value="<?= $row['noreg']?>">
                       <button type="submit" name="ubah-mhsWisuda" class="btn btn-primary me-2">Ubah</button>
-                      <button type="button" onclick="window.location.href='mahasiswa-wisuda.php'" class="btn btn-light">Kembali</button>
+                      <button type="button" onclick="window.location.href='mahasiswa-wisuda'" class="btn btn-light">Kembali</button>
                     </form>
                   <?php }}?>
                   </div>

@@ -1,4 +1,7 @@
 <!-- Required meta tags -->
+<noscript>
+  <meta http-equiv="refresh" content="0;url=406" />
+</noscript>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title><?php if($_SESSION['page-name']!=""){echo $_SESSION['page-name'].' - ';}?>Fakultas Teknik UNWIRA</title>

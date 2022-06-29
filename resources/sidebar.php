@@ -8,7 +8,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="mahasiswa-baru.php">
+      <a class="nav-link" href="mahasiswa-baru">
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">Mahasiswa Baru</span>
       </a>
@@ -20,19 +20,19 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pegawai.php">
+      <a class="nav-link" href="pegawai">
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">Pegawai</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="users.php">
+      <a class="nav-link" href="users">
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">User</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="controller/logout.php">
+      <a class="nav-link" href="controller/logout">
         <i class="ti-power-off menu-icon"></i>
         <span class="menu-title">Logout</span>
       </a>

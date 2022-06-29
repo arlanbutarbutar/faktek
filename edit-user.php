@@ -1,8 +1,8 @@
 <?php require_once("controller/script.php");
-  if(!isset($_GET['id-user'])){header("Location: users.php");}
+  if(!isset($_GET['id-user'])){header("Location: users");}
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Edit User"; $_SESSION['page-to']="edit-user.php?id-user=".$_GET['id-user']; $_SESSION['search']=2;
+  $_SESSION['page-name']="Edit User"; $_SESSION['page-to']="edit-user?id-user=".$_GET['id-user']; $_SESSION['search']=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@
                       <input type="hidden" name="id-user" value="<?= $row['id_user']?>">
                       <input type="hidden" name="oldEmail" value="<?= $row['email']?>">
                       <button type="submit" name="ubah-user" class="btn btn-primary me-2">Ubah</button>
-                      <button type="button" onclick="window.location.href='users.php'" class="btn btn-light">Kembali</button>
+                      <button type="button" onclick="window.location.href='users'" class="btn btn-light">Kembali</button>
                     </form>
                   <?php }}?>
                   </div>

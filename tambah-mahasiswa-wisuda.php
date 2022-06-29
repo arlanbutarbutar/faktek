@@ -39,7 +39,7 @@
                   <div class="card-body">
                     <form class="forms-sample"  method="POST">
                       <div class="form-group">
-                        <label>Mahasiswa Terdaftar</label>
+                        <label>NIM dan Nama</label>
                         <select name="noreg" class="form-control" required>
                           <option value="">Pilih Mahasiswa</option>
                           <?php foreach($selectNewMahasiswa as $row_newMhs):?>
@@ -53,7 +53,7 @@
                       </div>
                       <div class="form-group">
                         <label>IPK</label>
-                        <input type="number" name="ipk" value="<?php if(isset($_POST['ipk'])){echo $_POST['ipk'];}?>" class="form-control" placeholder="ipk" required>
+                        <input type="text" name="ipk" value="<?php if(isset($_POST['ipk'])){echo $_POST['ipk'];}?>" class="form-control" placeholder="ipk" required>
                       </div>
                       <div class="form-group">
                         <label>Predikat</label>

@@ -2,10 +2,17 @@
 require_once("controller/script.php");
 require_once __DIR__ . '/vendor/autoload.php';
 
+$prodi="";
+if(isset($_GET['prodi'])){
+  $prodi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET['prodi']))));
+  $prodi=str_replace("-", " ", $prodi);
+  $wisudaMahasiswa=mysqli_query($conn, "SELECT * FROM mahasiswa_wisuda JOIN prodi ON mahasiswa_wisuda.id_prodi=prodi.id_prodi WHERE prodi.prodi='$prodi' ORDER BY mahasiswa_wisuda.id_mhs DESC");
+}
+
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML('<img src="assets/img/cop.png">');
-$mpdf->WriteHTML('<h2 style="text-align: center;">Data Mahasiswa Wisuda</h2>');
-$mpdf->WriteHTML('<table class="table table-striped" row="1" style="text-align: center;">
+$mpdf->WriteHTML('<h2 style="text-align: center;">Data Mahasiswa Wisuda <br>Program Studi '.$prodi.'</h2>');
+$mpdf->WriteHTML('<table class="table table-striped" style="text-align: center;margin: auto;">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -34,12 +41,6 @@ if (mysqli_num_rows($wisudaMahasiswa) == 0) {
 $no = 1;
 if (mysqli_num_rows($wisudaMahasiswa) > 0) {
   while ($row = mysqli_fetch_assoc($wisudaMahasiswa)) {
-    $tgl_masuk = date_create($row['tgl_masuk']);
-    $tgl_masuk = date_format($tgl_masuk, "d M Y");
-    $tgl_lulus = date_create($row['tgl_lulus']);
-    $tgl_lulus = date_format($tgl_lulus, "d M Y");
-    $tahun_wisuda = date_create($row['tahun_wisuda']);
-    $tahun_wisuda = date_format($tahun_wisuda, "Y");
     $mpdf->WriteHTML('<tr>
 <th scope="row">' . $no . '</th>
 <td>' . $row['prodi'] . '</td> 

@@ -1,7 +1,7 @@
 <?php require_once("controller/script.php");
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Import Data Wisuda"; $_SESSION['page-to']="import-excel.php"; $_SESSION['search']=2;
+  $_SESSION['page-name']="Import Data Wisuda"; $_SESSION['page-to']="import-excel"; $_SESSION['search']=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@
                         </div>
                       </div>
                       <button type="submit" name="import-wisuda" class="btn btn-primary me-2">Import</button>
-                      <button type="button" onclick="window.location.href='mahasiswa-wisuda.php'" class="btn btn-light">Kembali</button>
+                      <button type="button" onclick="window.location.href='mahasiswa-wisuda'" class="btn btn-light">Kembali</button>
                     </form>
                   </div>
                 </div>

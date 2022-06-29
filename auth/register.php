@@ -1,5 +1,5 @@
 <?php require_once("../controller/script.php");
-    $_SESSION['auth']=1; $_SESSION['page-name']="Register"; $_SESSION['page-to']="register.php";
+    $_SESSION['auth']=1; $_SESSION['page-name']="Register"; $_SESSION['page-to']="register";
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -47,7 +47,7 @@
                       </div>
                     </form>
                     <div class="new-account mt-3">
-                      <p class="text-center">Sudah punya akun? <a href="login.php" class="text-primary">Login</a></p>
+                      <p class="text-center">Sudah punya akun? <a href="login" class="text-primary">Login</a></p>
                     </div>
                   </div>
                 </div>
