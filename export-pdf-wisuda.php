@@ -48,11 +48,11 @@ if (mysqli_num_rows($wisudaMahasiswa) > 0) {
 <td>' . $row['nama'] . '</td>
 <td>' . $row['jk'] . '</td>
 <td>' . $row['ttl'] . '</td>
-<td>' . $tgl_masuk . '</td>
-<td>' . $tgl_lulus . '</td>
+<td>' . $row['tgl_masuk'] . '</td>
+<td>' . $row['tgl_lulus'] . '</td>
 <td>' . $row['ipk'] . '</td>
 <td>' . $row['predikat_lulus'] . '</td>
-<td>' . $tahun_wisuda . '</td>
+<td>' . $row['tahun_wisuda'] . '</td>
 <td>' . $row['wisuda_ke'] . '</td>
 <td>' . $row['lama_studi'] . '</td>
 </tr>
