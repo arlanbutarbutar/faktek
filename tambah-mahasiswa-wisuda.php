@@ -67,10 +67,6 @@
                         <label>Wisuda Ke</label>
                         <input type="number" name="wisuda_ke" value="<?php if(isset($_POST['wisuda_ke'])){echo $_POST['wisuda_ke'];}?>" class="form-control" placeholder="Wisuda Ke" required>
                       </div>
-                      <div class="form-group">
-                        <label>Lama Studi</label>
-                        <input type="number" name="lama_studi" value="<?php if(isset($_POST['lama_studi'])){echo $_POST['lama_studi'];}?>" class="form-control" placeholder="Lama Studi" required>
-                      </div>
                       <button type="submit" name="simpan-mhsWisuda" class="btn btn-primary me-2">Tambah</button>
                       <button type="button" onclick="window.location.href='mahasiswa-wisuda.php'" class="btn btn-light">Kembali</button>
                     </form>
