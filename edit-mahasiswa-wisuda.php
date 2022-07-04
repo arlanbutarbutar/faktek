@@ -76,11 +76,11 @@
                       </div>
                       <div class="form-group">
                         <label>Tgl Masuk</label>
-                        <input type="date" name="tgl_masuk" value="<?= $row['tgl_masuk']?>" class="form-control" placeholder="Tanggal Masuk" required>
+                        <input type="date" name="tgl_masuk" value="<?php $tgl_masuk=date_create($row['tgl_masuk']); echo date_format($tgl_masuk, "Y-m-d");?>" class="form-control" placeholder="Tanggal Masuk" required>
                       </div>
                       <div class="form-group">
                         <label>Tgl Lulus</label>
-                        <input type="date" name="tgl_lulus" value="<?= $row['tgl_lulus']?>" class="form-control" placeholder="Tanggal Lulus" required>
+                        <input type="date" name="tgl_lulus" value="<?php $tgl_lulus=date_create($row['tgl_lulus']); echo date_format($tgl_lulus, "Y-m-d"); ?>" class="form-control" placeholder="Tanggal Lulus" required>
                       </div>
                       <div class="form-group">
                         <label>IPK</label>
@@ -92,7 +92,7 @@
                       </div>
                       <div class="form-group">
                         <label>Tahun Wisuda</label>
-                        <input type="date" name="tahun_wisuda" value="<?= $row['tahun_wisdua']?>" class="form-control" placeholder="Tahun Wisuda" required>
+                        <input type="number" name="tahun_wisuda" value="<?= $row['tahun_wisuda']?>" class="form-control" placeholder="Tahun Wisuda" required>
                       </div>
                       <div class="form-group">
                         <label>Wisuda Ke</label>
