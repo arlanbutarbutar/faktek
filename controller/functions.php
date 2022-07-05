@@ -158,8 +158,8 @@ if(isset($_SESSION['id-user'])){
     $tahun_wisuda=date_create($tahun_wisuda);
     $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
-    $lama_studi=$tahun_lulus;
-    if($lama_studi<=3){
+    $lama_studi=$tahun_lulus*2;
+    if($lama_studi<7){
       $_SESSION['message-danger']="Maaf, lama studi yang anda masukan belum benar.";
       $_SESSION['time-message']=time();
       return false;
@@ -216,7 +216,8 @@ if(isset($_SESSION['id-user'])){
     $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
     $lama_studi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['lama_studi']))));
-    if($lama_studi!=$tahun_lulus){
+    $lama_studi_awal=$tahun_lulus*2;
+    if($lama_studi!=$lama_studi_awal){
       $_SESSION['message-danger']="Maaf, lama studi yang anda masukan tidak sesuai.";
       $_SESSION['time-message']=time();
       return false;
