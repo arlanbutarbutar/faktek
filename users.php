@@ -1,7 +1,7 @@
 <?php require_once("controller/script.php");
   require_once("controller/redirect-unusers.php");
   if(isset($_SESSION['auth'])){unset($_SESSION['auth']);}
-  $_SESSION['page-name']="Users"; $_SESSION['page-to']="users.php"; $_SESSION['search']=1;
+  $_SESSION['page-name']="Users"; $_SESSION['page-to']="users"; $_SESSION['search']=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">

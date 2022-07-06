@@ -1,5 +1,5 @@
 <?php require_once('controller/script.php');
-if($_SESSION['page-to']=="mahasiswa-baru.php"){
+if($_SESSION['page-to']=="mahasiswa-baru"){
   if(isset($_GET['key'])&&$_GET['key']!=""){
     $key=addslashes(trim($_GET['key']));
     $query="SELECT * FROM mahasiswa_baru JOIN prodi ON mahasiswa_baru.id_prodi=prodi.id_prodi WHERE mahasiswa_baru.noreg LIKE '%$key%' ORDER BY mahasiswa_baru.id_mhs DESC";
@@ -29,7 +29,7 @@ if($_SESSION['page-to']=="mahasiswa-baru.php"){
         </form>
       </td>
     </tr>
-<?php $no++; }}}if($_SESSION['page-to']=="mahasiswa-wisuda.php"){
+<?php $no++; }}}if($_SESSION['page-to']=="mahasiswa-wisuda"){
   if(isset($_GET['key'])&&$_GET['key']!=""){
     $key=addslashes(trim($_GET['key']));
     $query="SELECT * FROM mahasiswa_wisuda JOIN prodi ON mahasiswa_wisuda.id_prodi=prodi.id_prodi WHERE mahasiswa_wisuda.noreg LIKE '%$key%' ORDER BY mahasiswa_wisuda.id_mhs DESC";
@@ -63,7 +63,7 @@ if($_SESSION['page-to']=="mahasiswa-baru.php"){
           </form>
         </td>
       </tr>
-<?php $no++; }}}if($_SESSION['page-to']=="pegawai.php"){
+<?php $no++; }}}if($_SESSION['page-to']=="pegawai"){
   if(isset($_GET['key'])&&$_GET['key']!=""){
     $key=addslashes(trim($_GET['key']));
     $query="SELECT * FROM pegawai WHERE nip LIKE '%$key%' ORDER BY id_pegawai DESC";
@@ -93,7 +93,7 @@ if($_SESSION['page-to']=="mahasiswa-baru.php"){
         </td>
         </td>
       </tr>
-<?php $no++; }}}if($_SESSION['page-to']=="users.php"){
+<?php $no++; }}}if($_SESSION['page-to']=="users"){
   if(isset($_GET['key'])&&$_GET['key']!=""){
     $key=addslashes(trim($_GET['key']));
     $query="SELECT * FROM users JOIN users_active ON users.id_active=users_active.id_active JOIN users_role ON users.id_role=users_role.id_role WHERE users.id_user!='$id_user' AND users.nama LIKE '%$key%' ORDER BY users.id_user DESC";
