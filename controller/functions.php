@@ -153,17 +153,20 @@ if(isset($_SESSION['id-user'])){
     $tgl_lulus=date_create($tgl_lulus);
     $tgl_lulus=date_format($tgl_lulus, "d M Y");
     $ipk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ipk']))));
-    $predikat=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['predikat']))));
+    if($ipk<2.50){
+      $predikat="Belum Memuaskan";
+    }else if($ipk>=2.50 && $ipk<=3.00){
+      $predikat="Memuaskan";
+    }else if($ipk>=3.01 && $ipk<=3.50){
+      $predikat="Sangat Memuaskan";
+    }else if($ipk>=3.51 && $ipk<=4.00){
+      $predikat="Dengan Pujian";
+    }
     $tahun_wisuda=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun_wisuda']))));
     $tahun_wisuda=date_create($tahun_wisuda);
     $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
     $lama_studi=$tahun_lulus*2;
-    if($lama_studi<7){
-      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan belum benar.";
-      $_SESSION['time-message']=time();
-      return false;
-    }
     mysqli_query($conn, "INSERT INTO mahasiswa_wisuda(id_prodi,noreg,nama,jk,ttl,tgl_masuk,tgl_lulus,ipk,predikat_lulus,tahun_wisuda,wisuda_ke,lama_studi) VALUES('$id_prodi','$noreg','$nama','$jk','$ttl','$tgl_masuk','$tgl_lulus','$ipk','$predikat','$tahun_wisuda','$wisuda_ke','$lama_studi')");
     mysqli_query($conn, "DELETE FROM mahasiswa_baru WHERE noreg='$noreg'");
     return mysqli_affected_rows($conn);
@@ -210,23 +213,20 @@ if(isset($_SESSION['id-user'])){
     $tgl_lulus=date_create($tgl_lulus);
     $tgl_lulus=date_format($tgl_lulus, "d M Y");
     $ipk=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['ipk']))));
-    $predikat=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['predikat']))));
+    if($ipk<2.50){
+      $predikat="Belum Memuaskan";
+    }else if($ipk>=2.50 && $ipk<=3.00){
+      $predikat="Memuaskan";
+    }else if($ipk>=3.01 && $ipk<=3.50){
+      $predikat="Sangat Memuaskan";
+    }else if($ipk>=3.51 && $ipk<=4.00){
+      $predikat="Dengan Pujian";
+    }
     $tahun_wisuda=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun_wisuda']))));
     $tahun_wisuda=date_create($tahun_wisuda);
     $tahun_wisuda=date_format($tahun_wisuda, "Y");
     $wisuda_ke=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['wisuda_ke']))));
-    $lama_studi=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['lama_studi']))));
-    $lama_studi_awal=$tahun_lulus*2;
-    if($lama_studi!=$lama_studi_awal){
-      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan tidak sesuai.";
-      $_SESSION['time-message']=time();
-      return false;
-    }
-    if($lama_studi<=3){
-      $_SESSION['message-danger']="Maaf, lama studi yang anda masukan belum benar.";
-      $_SESSION['time-message']=time();
-      return false;
-    }
+    $lama_studi=$tahun_lulus*2;
     mysqli_query($conn, "UPDATE mahasiswa_wisuda SET id_prodi='$id_prodi', noreg='$noreg', nama='$nama', jk='$jk', ttl='$ttl', tgl_masuk='$tgl_masuk', tgl_lulus='$tgl_lulus', ipk='$ipk', predikat_lulus='$predikat', tahun_wisuda='$tahun_wisuda', wisuda_ke='$wisuda_ke', lama_studi='$lama_studi' WHERE id_mhs='$id_mhs'");
     return mysqli_affected_rows($conn);
   }

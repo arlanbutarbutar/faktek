@@ -87,20 +87,12 @@
                         <input type="text" name="ipk" value="<?= $row['ipk']?>" class="form-control" required>
                       </div>
                       <div class="form-group">
-                        <label>Predikat Lulus</label>
-                        <input type="text" name="predikat" value="<?= $row['predikat_lulus']?>" class="form-control" required>
-                      </div>
-                      <div class="form-group">
                         <label>Tahun Wisuda</label>
                         <input type="number" name="tahun_wisuda" value="<?= $row['tahun_wisuda']?>" class="form-control" placeholder="Tahun Wisuda" required>
                       </div>
                       <div class="form-group">
                         <label>Wisuda Ke</label>
                         <input type="number" name="wisuda_ke" value="<?= $row['wisuda_ke']?>" class="form-control" placeholder="Wisuda Ke" required>
-                      </div>
-                      <div class="form-group">
-                        <label>Lama Studi</label>
-                        <input type="number" name="lama_studi" value="<?= $row['lama_studi']?>" class="form-control" placeholder="Lama Studi" required>
                       </div>
                       <input type="hidden" name="id-mhs" value="<?= $row['id_mhs']?>">
                       <input type="hidden" name="oldNoreg" value="<?= $row['noreg']?>">

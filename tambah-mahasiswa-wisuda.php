@@ -56,10 +56,6 @@
                         <input type="text" name="ipk" value="<?php if(isset($_POST['ipk'])){echo $_POST['ipk'];}?>" class="form-control" placeholder="ipk" required>
                       </div>
                       <div class="form-group">
-                        <label>Predikat</label>
-                        <input type="text" name="predikat" value="<?php if(isset($_POST['predikat'])){echo $_POST['predikat'];}?>" class="form-control" placeholder="Predikat" required>
-                      </div>
-                      <div class="form-group">
                         <label>Tahun Wisuda</label>
                         <input type="date" name="tahun_wisuda" value="<?php if(isset($_POST['tahun_wisuda'])){echo $_POST['tahun_wisuda'];}?>" class="form-control" placeholder="Tahun Wisuda" required>
                       </div>
